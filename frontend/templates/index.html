@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Needlepoint Canvas Creator</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-th"></i>
+                <span>Needlepoint Creator</span>
+            </div>
+            <div class="nav-menu">
+                <a href="{{ url_for('index') }}" class="nav-link active">Home</a>
+                <a href="{{ url_for('upload') }}" class="nav-link">Create Pattern</a>
+                <a href="{{ url_for('login') }}" class="nav-link">Login</a>
+                <a href="{{ url_for('register') }}" class="nav-link">Register</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="hero-section">
+        <div class="hero-content">
+            <h1 class="hero-title">Transform Any Image Into Needlepoint Canvas</h1>
+            <p class="hero-subtitle">
+                Upload your favorite images and convert them into beautiful needlepoint patterns 
+                using all 490 DMC thread colors. Create, organize, and track your progress with ease.
+            </p>
+            
+            <div class="hero-features">
+                <div class="feature-card">
+                    <i class="fas fa-image"></i>
+                    <h3>Image Upload</h3>
+                    <p>Support for all major image formats</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-palette"></i>
+                    <h3>DMC Colors</h3>
+                    <p>All 490 DMC thread colors available</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-th-large"></i>
+                    <h3>Custom Canvas</h3>
+                    <p>Choose your canvas size and mesh count</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-folder"></i>
+                    <h3>Organize</h3>
+                    <p>Create folders and organize your patterns</p>
+                </div>
+            </div>
+
+            <div class="hero-actions">
+                <a href="{{ url_for('upload') }}" class="btn btn-primary">
+                    <i class="fas fa-plus"></i>
+                    Create Your First Pattern
+                </a>
+                <a href="{{ url_for('register') }}" class="btn btn-secondary">
+                    <i class="fas fa-user-plus"></i>
+                    Join Now
+                </a>
+            </div>
+        </div>
+
+        <div class="hero-image">
+            <div class="pattern-preview">
+                <div class="canvas-grid">
+                    <!-- Sample pattern preview -->
+                    <div class="grid-cell" style="background-color: #ff6b6b;"></div>
+                    <div class="grid-cell" style="background-color: #4ecdc4;"></div>
+                    <div class="grid-cell" style="background-color: #45b7d1;"></div>
+                    <div class="grid-cell" style="background-color: #96ceb4;"></div>
+                    <div class="grid-cell" style="background-color: #feca57;"></div>
+                    <div class="grid-cell" style="background-color: #ff9ff3;"></div>
+                    <div class="grid-cell" style="background-color: #54a0ff;"></div>
+                    <div class="grid-cell" style="background-color: #5f27cd;"></div>
+                    <div class="grid-cell" style="background-color: #00d2d3;"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <section class="features-section">
+        <div class="container">
+            <h2 class="section-title">Everything You Need for Needlepoint</h2>
+            
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-download"></i>
+                    </div>
+                    <h3>Download Patterns</h3>
+                    <p>Download your patterns in high resolution for printing and reference</p>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                    <h3>Zoom & Navigate</h3>
+                    <p>Zoom in and out of your patterns for detailed work</p>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-check-square"></i>
+                    </div>
+                    <h3>Progress Tracking</h3>
+                    <p>Mark completed stitches with interactive checkboxes</p>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <h3>Supply Management</h3>
+                    <p>Save links to your favorite needlepoint supplies</p>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-share-alt"></i>
+                    </div>
+                    <h3>Shareable Wishlists</h3>
+                    <p>Create and share wishlists with friends and family</p>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-cloud"></i>
+                    </div>
+                    <h3>Cloud Storage</h3>
+                    <p>All your patterns safely stored in the cloud</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Needlepoint Creator</h3>
+                    <p>Transform your images into beautiful needlepoint patterns</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="{{ url_for('upload') }}">Create Pattern</a></li>
+                        <li><a href="{{ url_for('login') }}">Login</a></li>
+                        <li><a href="{{ url_for('register') }}">Register</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Features</h4>
+                    <ul>
+                        <li>Image Conversion</li>
+                        <li>DMC Color Matching</li>
+                        <li>Progress Tracking</li>
+                        <li>Supply Management</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Needlepoint Creator. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

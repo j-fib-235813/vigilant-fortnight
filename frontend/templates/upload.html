@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Needlepoint Pattern - Needlepoint Creator</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-th"></i>
+                <span>Needlepoint Creator</span>
+            </div>
+            <div class="nav-menu">
+                <a href="{{ url_for('index') }}" class="nav-link">Home</a>
+                <a href="{{ url_for('upload') }}" class="nav-link active">Create Pattern</a>
+                <a href="{{ url_for('login') }}" class="nav-link">Login</a>
+                <a href="{{ url_for('register') }}" class="nav-link">Register</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="upload-container">
+        <div class="upload-content">
+            <h1 class="upload-title">Create Your Needlepoint Pattern</h1>
+            <p class="upload-subtitle">
+                Upload any image and convert it into a beautiful needlepoint pattern using all 490 DMC thread colors.
+            </p>
+
+            <div class="upload-form-container">
+                <form id="uploadForm" class="upload-form" enctype="multipart/form-data">
+                    <div class="form-section">
+                        <h3><i class="fas fa-image"></i> Image Upload</h3>
+                        <div class="file-upload-area" id="fileUploadArea">
+                            <div class="file-upload-content">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                                <p>Click to select or drag and drop your image here</p>
+                                <p class="file-types">Supported formats: PNG, JPG, JPEG, GIF, BMP, TIFF, WEBP, ICO, PPM, PGM, PBM, PNM</p>
+                                <input type="file" id="imageFile" name="image" accept=".png,.jpg,.jpeg,.gif,.bmp,.tiff,.tif,.webp,.ico,.ppm,.pgm,.pbm,.pnm" required>
+                            </div>
+                        </div>
+                        <div id="filePreview" class="file-preview" style="display: none;">
+                            <img id="previewImage" src="" alt="Preview">
+                            <div class="file-info">
+                                <span id="fileName"></span>
+                                <span id="fileSize"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3><i class="fas fa-th-large"></i> Canvas Settings</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="meshCount">Mesh Count (stitches per inch):</label>
+                                <select id="meshCount" name="mesh_count" required>
+                                    <option value="10">10 mesh</option>
+                                    <option value="12">12 mesh</option>
+                                    <option value="13">13 mesh</option>
+                                    <option value="14" selected>14 mesh</option>
+                                    <option value="18">18 mesh</option>
+                                    <option value="custom">Custom</option>
+                                </select>
+                                <input type="number" id="customMesh" name="custom_mesh" placeholder="Enter custom mesh count" style="display: none;" min="1" max="50">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="canvasSize">Canvas Size:</label>
+                                <select id="canvasSize" name="canvas_size" required>
+                                    <option value="fit">Fit to image</option>
+                                    <option value="custom">Custom size</option>
+                                    <option value="40x40">4" x 4"</option>
+                                    <option value="50x70">5" x 7"</option>
+                                    <option value="80x80">8" x 8"</option>
+                                    <option value="80x100">8" x 10"</option>
+                                    <option value="110x140">11" x 14"</option>
+                                    <option value="120x120">12" x 12"</option>
+                                    <option value="160x200">16" x 20"</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-row" id="customSizeRow" style="display: none;">
+                            <div class="form-group">
+                                <label for="customWidth">Width (inches):</label>
+                                <input type="number" id="customWidth" name="custom_width" min="0.1" step="0.1" placeholder="Enter width">
+                            </div>
+                            <div class="form-group">
+                                <label for="customHeight">Height (inches):</label>
+                                <input type="number" id="customHeight" name="custom_height" min="0.1" step="0.1" placeholder="Enter height">
+                            </div>
+                        </div>
+
+                        <div class="form-row" id="customStitchRow" style="display: none;">
+                            <div class="form-group">
+                                <label for="customStitchWidth">Width (stitches):</label>
+                                <input type="number" id="customStitchWidth" name="custom_stitch_width" min="1" placeholder="Enter width in stitches">
+                            </div>
+                            <div class="form-group">
+                                <label for="customStitchHeight">Height (stitches):</label>
+                                <input type="number" id="customStitchHeight" name="custom_stitch_height" min="1" placeholder="Enter height in stitches">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3><i class="fas fa-palette"></i> Color Settings</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="maxColors">Maximum Colors:</label>
+                                <select id="maxColors" name="max_colors">
+                                    <option value="10">10 colors</option>
+                                    <option value="20">20 colors</option>
+                                    <option value="30" selected>30 colors</option>
+                                    <option value="40">40 colors</option>
+                                    <option value="50">50 colors</option>
+                                    <option value="60">60 colors</option>
+                                    <option value="0">No limit (use all)</option>
+                                </select>
+                                <p class="help-text">More colors = more detail but more complex pattern</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary" id="createPatternBtn">
+                            <i class="fas fa-magic"></i>
+                            Create Pattern
+                        </button>
+                        <button type="button" class="btn btn-secondary" onclick="window.location.href='{{ url_for('index') }}'">
+                            <i class="fas fa-arrow-left"></i>
+                            Back to Home
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <div id="patternPreview" class="pattern-preview-container" style="display: none;">
+                <h3>Pattern Preview</h3>
+                <div class="preview-content">
+                    <div class="preview-image">
+                        <canvas id="patternCanvas" width="400" height="400"></canvas>
+                    </div>
+                    <div class="preview-info">
+                        <h4>Pattern Information</h4>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <span class="label">Canvas Size:</span>
+                                <span id="previewCanvasSize"></span>
+                            </div>
+                            <div class="info-item">
+                                <span class="label">Mesh Count:</span>
+                                <span id="previewMeshCount"></span>
+                            </div>
+                            <div class="info-item">
+                                <span class="label">Colors Used:</span>
+                                <span id="previewColorsUsed"></span>
+                            </div>
+                            <div class="info-item">
+                                <span class="label">Total Stitches:</span>
+                                <span id="previewTotalStitches"></span>
+                            </div>
+                        </div>
+                        
+                        <div class="color-list">
+                            <h5>DMC Colors Used:</h5>
+                            <div id="colorSwatches" class="color-swatches"></div>
+                        </div>
+
+                        <div class="preview-actions">
+                            <button type="button" class="btn btn-success" id="savePatternBtn">
+                                <i class="fas fa-save"></i>
+                                Save to Gallery
+                            </button>
+                            <button type="button" class="btn btn-info" id="downloadPatternBtn">
+                                <i class="fas fa-download"></i>
+                                Download Pattern
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Save Pattern Modal -->
+    <div id="saveModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Save Pattern to Gallery</h3>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="savePatternForm">
+                    <div class="form-group">
+                        <label for="patternName">Pattern Name:</label>
+                        <input type="text" id="patternName" name="name" required placeholder="Enter a name for your pattern">
+                    </div>
+                    <div class="form-group">
+                        <label for="patternFolder">Folder (optional):</label>
+                        <select id="patternFolder" name="folder_id">
+                            <option value="">No folder</option>
+                        </select>
+                        <button type="button" class="btn btn-sm btn-secondary" id="createFolderBtn">
+                            <i class="fas fa-folder-plus"></i>
+                            Create New Folder
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="cancelSaveBtn">Cancel</button>
+                <button type="button" class="btn btn-primary" id="confirmSaveBtn">Save Pattern</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Create Folder Modal -->
+    <div id="folderModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Create New Folder</h3>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="folderName">Folder Name:</label>
+                    <input type="text" id="folderName" placeholder="Enter folder name">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="cancelFolderBtn">Cancel</button>
+                <button type="button" class="btn btn-primary" id="confirmFolderBtn">Create Folder</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/upload.js') }}"></script>
+</body>
+</html>
