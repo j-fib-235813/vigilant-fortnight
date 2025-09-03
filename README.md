@@ -29,33 +29,6 @@ A comprehensive web application that converts any image into beautiful needlepoi
 - **Real-time Preview**: See your pattern before saving
 - **Beautiful UI**: Modern, intuitive interface with smooth animations
 
-## Installation
-
-### Prerequisites
-- Python 3.8 or higher
-- pip (Python package manager)
-
-### Setup Instructions
-
-1. **Clone or download the project**
-   ```bash
-   cd /path/to/needlepoint-app
-   ```
-
-2. **Install Python dependencies**
-   ```bash
-   cd backend
-   pip install -r requirements.txt
-   ```
-
-3. **Run the application**
-   ```bash
-   python app.py
-   ```
-
-4. **Access the application**
-   Open your web browser and navigate to: `http://localhost:5000`
-
 ## Usage
 
 ### Creating Your First Pattern
@@ -193,27 +166,9 @@ MAX_FILE_SIZE=33554432
 - **Color Reduction**: Limit colors for faster processing
 - **Browser**: Use modern browsers for best performance
 
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Test thoroughly
-5. Submit a pull request
-
 ## License
 
-This project is open source and available under the MIT License.
+This project is under an CC BY-NC-ND License
 
-## Support
-
-For questions or issues:
-1. Check the troubleshooting section above
-2. Review the code comments for technical details
-3. Create an issue in the repository
-
----
-
-**Happy Stitching! 🧵✨**
 
 Transform your favorite images into beautiful needlepoint patterns with the power of all 490 DMC thread colors.
